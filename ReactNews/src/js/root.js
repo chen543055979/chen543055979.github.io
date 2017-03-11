@@ -2,16 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory} from 'react-router';
 import { Button } from 'antd';
+import PCIndex from './components/pc_index';
+import MobileIndex from './components/mobile_index';
 import 'antd/dist/antd.css';
+import MediaQuery from 'react-responsive';
 
 export default class Root extends React.Component {
     render() {
         return (
             <div>
-                <Button type="primary">Primary</Button>
-                <Button>Default</Button>
-                <Button type="dashed">Dashed</Button>
-                <Button type="danger">Danger</Button>
+                <MediaQuery query="(min-device-width: 1224px)">
+                    <PCIndex/>
+                </MediaQuery>
+                <MediaQuery query="(max-device-width: 1224px)">
+                    <MobileIndex/>
+                </MediaQuery>
             </div>
         )
     }
