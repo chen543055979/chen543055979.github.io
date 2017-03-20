@@ -1,3 +1,5 @@
+//鱼妈妈与果实的碰撞事件
+//碰撞之后，果实死亡，鱼妈妈颜色变色变深，产生波纹，果实出生
 function momFruitsCollision(){
     if(!data.gameOver){
         for(var i=0;i<fruit.num;i++){
@@ -14,6 +16,8 @@ function momFruitsCollision(){
     }
 }
 
+//鱼妈妈与鱼宝宝的碰撞事件
+//碰撞之后，检测鱼妈妈是否吃了果实，是的话鱼妈妈鱼宝宝变为初始颜色，分数增加，产生波纹
 function momBabyCollision(){
     if(data.fruitNum > 0 && !data.gameOver){
         var l = calLength2(mom.x,mom.y,baby.x,baby.y);

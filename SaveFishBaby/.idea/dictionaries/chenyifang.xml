@@ -2,6 +2,7 @@
   <dictionary name="chenyifang">
     <words>
       <w>gameloop</w>
+      <w>gameover</w>
       <w>mousemove</w>
       <w>onload</w>
     </words>

@@ -6,6 +6,7 @@ var waveObj = function(){
     this.style = [];
 };
 
+//初始化10个波纹
 waveObj.prototype.num = 10;
 waveObj.prototype.init = function(){
     for(var i=0;i<this.num;i++){
@@ -14,6 +15,8 @@ waveObj.prototype.init = function(){
     }
 };
 
+//在画布上渲染波纹
+//根据触发对象选择渲染的波纹类别
 waveObj.prototype.draw = function(){
     ctx1.save();
     ctx1.shadowBlur = 10;
@@ -50,6 +53,7 @@ waveObj.prototype.draw = function(){
     ctx1.restore();
 };
 
+//设置波纹出生，检测出生时的触发对象是果实还是鱼宝宝
 waveObj.prototype.born = function(x,y,style){
     for(var i=0;i<this.num;i++){
         if(!this.alive[i]){

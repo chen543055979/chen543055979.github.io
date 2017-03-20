@@ -18,6 +18,7 @@ var babyObj = function(){
 };
 
 babyObj.prototype.init = function(){
+    //鱼宝宝初始位置在画布中央偏左
     this.angle = 0;
     this.x = canWidth*.5 - 50;
     this.y = canHeight*.5 + 50;
@@ -39,18 +40,22 @@ babyObj.prototype.init = function(){
 
 babyObj.prototype.draw = function(){
 
+    //鱼宝宝的坐标趋向于鱼妈妈的坐标
     this.x = lerpDistance(mom.x,this.x,.98);
     this.y = lerpDistance(mom.y,this.y,.98);
 
+    //设置鱼宝宝的角度始终朝鱼妈妈的方向
     var beta = Math.atan2(mom.y-this.y,mom.x-this.x)+Math.PI;
     this.angle = lerpAngle(beta,this.angle,.6);
 
+    //设置鱼宝宝摆尾巴的频率
     this.babyTailTimer += deltaTime;
     if(this.babyTailTimer > 50){
         this.babyTailCount = (this.babyTailCount+1)%8;
         this.babyTailTimer %= 50;
     }
 
+    //设置鱼宝宝眼睛的眨动
     this.babyEyeTimer += deltaTime;
     if(this.babyEyeTimer > this.babyEyeInterval){
         this.babyEyeCount = (this.babyEyeCount+1)%2;
@@ -62,6 +67,7 @@ babyObj.prototype.draw = function(){
         }
     }
 
+    //设置鱼宝宝身体颜色的变化，身体变白，宝宝死亡，游戏结束
     this.babyBodyTimer += deltaTime;
     if(this.babyBodyTimer>300){
         this.babyBodyCount += 1;
@@ -72,6 +78,7 @@ babyObj.prototype.draw = function(){
         }
     }
 
+    //在画布上渲染鱼宝宝
     ctx1.save();
     ctx1.translate(this.x,this.y);
     ctx1.rotate(this.angle);

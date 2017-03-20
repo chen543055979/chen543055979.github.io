@@ -6,6 +6,7 @@ var dataObj = function(){
     this.alpha = 0;
 };
 
+//在画部下方添加分数显示，游戏结束在画面中央添加GAMEOVER
 dataObj.prototype.draw = function(){
     var w = can1.width;
     var h = can1.height;
@@ -25,6 +26,8 @@ dataObj.prototype.draw = function(){
     ctx1.restore();
 };
 
+//分值计算
+//黄果实加1分，蓝果实使当前鱼妈妈吃的果实分数*2
 dataObj.prototype.addScore = function(){
     this.score += this.fruitNum * this.double;
     this.fruitNum = 0;

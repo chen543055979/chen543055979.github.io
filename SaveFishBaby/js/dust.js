@@ -7,6 +7,8 @@ var dustObj = function(){
     this.sinX = 0;
 };
 
+//设置30个尘埃
+//尘埃的位置随机分布在画布上，尘埃的大小随机
 dustObj.prototype.num = 30;
 dustObj.prototype.init = function(){
     for(var i=0;i<7;i++){
@@ -22,6 +24,8 @@ dustObj.prototype.init = function(){
     this.sinX = 0;
 };
 
+//在画布上渲染尘埃
+//尘埃的x坐标参照海葵的正弦值变化，实现水流飘动的效果
 dustObj.prototype.draw = function(){
     this.sinX += deltaTime*.0008;
     var sinY = Math.sin(this.sinX);

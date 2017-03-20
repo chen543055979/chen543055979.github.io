@@ -6,8 +6,10 @@ var aneObj = function(){
     this.amp = [];      //振幅
 };
 
+//设置50个海葵
 aneObj.prototype.num = 50;
 
+//海葵初始化，位置、高度随机
 aneObj.prototype.init = function(){
     for(var i=0;i<this.num;i++){
         this.startX[i] = i * 16 + Math.random() * 20;
@@ -17,6 +19,7 @@ aneObj.prototype.init = function(){
     }
 };
 
+//在画布上渲染海葵，海葵摆动运用了贝塞尔曲线，初始点和控制点不变，终止点随着正弦值变化
 aneObj.prototype.draw = function(){
     this.sinX += deltaTime*.0008;
     var sinY = Math.sin(this.sinX);

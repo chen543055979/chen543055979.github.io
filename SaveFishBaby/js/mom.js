@@ -19,6 +19,7 @@ var momObj = function(){
 };
 
 momObj.prototype.init = function(){
+    //鱼妈妈初始位置在画布中央
     this.x = canWidth*.5;
     this.y = canHeight*.5;
     this.angle = 0;
@@ -41,18 +42,22 @@ momObj.prototype.init = function(){
 
 momObj.prototype.draw = function(){
 
+    //鱼妈妈的坐标趋向于鼠标的坐标
     this.x = lerpDistance(mx,this.x,.98);
     this.y = lerpDistance(my,this.y,.98);
 
+    //调整鱼妈妈的角度，使她始终朝向鼠标方向游
     var beta = Math.atan2(my-this.y,mx-this.x)+Math.PI;     //反正切
     this.angle = lerpAngle(beta,this.angle,.6);
 
+    //设置鱼妈妈的尾巴摆动频率
     this.momTailTimer += deltaTime;
     if(this.momTailTimer > 50){
         this.momTailCount = (this.momTailCount+1)%8;
         this.momTailTimer %= 50;
     }
 
+    //设置鱼妈妈眼睛的眨动频率
     this.momEyeTimer += deltaTime;
     if(this.momEyeTimer > this.momEyeInterval){
         this.momEyeCount = (this.momEyeCount+1)%2;
@@ -60,6 +65,7 @@ momObj.prototype.draw = function(){
         this.momEyeCount==1 ? this.momEyeInterval = 200 : this.momEyeInterval = Math.random()*1500+2000;
     }
 
+    //在画布上渲染鱼妈妈，根据鱼妈妈吃的果实选择渲染鱼妈妈身体的图片，以改变与妈妈的颜色
     ctx1.save();
     data.double == 1 ? this.body = this.momBodyOrange[this.momBodyCount] : this.body = this.momBodyBlue[this.momBodyCount];
     ctx1.translate(this.x,this.y);
